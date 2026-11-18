@@ -14,6 +14,8 @@ class App < Sinatra::Base
     end
 
     get '/' do        
+        @todos = db.execute('SELECT todos.*, categories.name AS category_name FROM todos INNER JOIN category_id = categories.id')
+        ap @todos
         erb(:'todos/index')
     end
 
